@@ -212,6 +212,10 @@ const logger = function (movies) {
   ])
 }
 
+const deduplicateMovies = function (movies) {
+  return _.uniqBy(movies, 'tmdb_id')
+}
+
 module.exports = (function () {
   //
   // Class builder functions to help cache content but be
@@ -243,6 +247,7 @@ module.exports = (function () {
   ListBuilder.prototype.filter = function (opts = {}) {
     return Promise
       .resolve(getMovies())
+      .then(deduplicateMovies)
       .then(filterByMinValue('metacritic_score', opts.min_metacritic_score))
       .then(filterByMinValue('rt_score', opts.min_rt_score))
       .then(filterByMinValue('imdb_rating', opts.min_imdb_rating))
