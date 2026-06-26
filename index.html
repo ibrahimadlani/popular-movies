@@ -132,24 +132,33 @@
       });
 
       var posterTemplate = Handlebars.compile($('#poster-template').html());
-      var movies = $.get('https://popular-movies-data.stevenlu.com/movies.json', function(data) {
-        var currentRow, i;
-        for (i = 0; i < data.length; i++) {
-          var movie = data[i];
 
-          if (!(i % 3)) {
-            $('#posters').append(currentRow);
-            currentRow = $('<div class="row">');
+      function loadMovies(url) {
+        $('#posters').empty();
+        $.get(url, function(data) {
+          var currentRow, i;
+          for (i = 0; i < data.length; i++) {
+            var movie = data[i];
+            if (!(i % 3)) {
+              $('#posters').append(currentRow);
+              currentRow = $('<div class="row">');
+            }
+            currentRow.append(posterTemplate({
+              url: movie.poster_url,
+              link: "http://www.imdb.com/title/" + movie.imdb_id + "/"
+            }));
           }
+          $('#posters').append(currentRow);
+        });
+      }
 
-          currentRow.append(posterTemplate({
-            url: movie.poster_url,
-            link: "http://www.imdb.com/title/" + movie.imdb_id + "/"
-          }));
-        }
-
-        $('#posters').append(currentRow);
+      $('.dropdown-content a').on('click', function(e) {
+        e.preventDefault();
+        loadMovies($(this).attr('href'));
+        $('.dropdown').removeClass('open');
       });
+
+      loadMovies('https://popular-movies-data.stevenlu.com/movies.json');
     });
   </script>
 </body>
