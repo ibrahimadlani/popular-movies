@@ -118,6 +118,19 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+      $('.dropdown-btn').on('click', function(e) {
+        e.preventDefault();
+        var $parent = $(this).parent('.dropdown');
+        $('.dropdown').not($parent).removeClass('open');
+        $parent.toggleClass('open');
+      });
+
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest('.dropdown').length) {
+          $('.dropdown').removeClass('open');
+        }
+      });
+
       var posterTemplate = Handlebars.compile($('#poster-template').html());
       var movies = $.get('https://popular-movies-data.stevenlu.com/movies.json', function(data) {
         var currentRow, i;
