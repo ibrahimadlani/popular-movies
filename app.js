@@ -270,6 +270,7 @@ async function fetchAndRender() {
     const parsed = raw
       .map(m => ({
         title:      m.title,
+        imdb_id:    m.imdb_id || null,
         /* normalise http → https to avoid mixed-content blocks */
         poster_url: (m.poster_url || m.poster || '').replace(/^http:\/\//, 'https://') || null,
       }))
@@ -330,7 +331,7 @@ function renderGrid() {
     const delay = animateNext ? `animation-delay:${Math.min(i * 28, 520)}ms` : '';
 
     return `
-      <a href="https://www.imdb.com/find/?q=${encodeURIComponent(m.title)}"
+      <a href="${m.imdb_id ? `https://www.imdb.com/title/${m.imdb_id}/` : `https://www.imdb.com/find/?q=${encodeURIComponent(m.title)}`}"
          target="_blank" rel="noopener"
          class="block ${animateNext ? 'anim' : ''}"
          style="${delay}">
