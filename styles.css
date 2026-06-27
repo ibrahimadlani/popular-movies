@@ -10,7 +10,7 @@
   --card:   #ffffff;
   --line:   #e7e7e7;
   --radius: 10px;
-  --cols:   5;
+  --cols:   4;
 }
 
 /* Dark mode — swaps every token, no Tailwind dark: prefix needed */
