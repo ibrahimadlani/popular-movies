@@ -143,8 +143,9 @@ function buildFilterBar() {
   const threshDef  = THRESHOLDS[state.provider];
   const threshHtml = threshDef ? buildThresholdHtml(threshDef) : '';
 
-  /* Vertical divider */
-  const div = `<span class="w-px h-5 shrink-0" style="background:var(--line)"></span>`;
+  /* Vertical divider — the one before the slider is hidden at ≤480px */
+  const div      = `<span class="w-px h-5 shrink-0" style="background:var(--line)"></span>`;
+  const divThresh = `<span class="w-px h-5 shrink-0 max-[480px]:hidden" style="background:var(--line)"></span>`;
 
   bar.innerHTML = `
     <div class="flex flex-wrap items-center gap-3">
@@ -154,7 +155,10 @@ function buildFilterBar() {
            style="border-color:var(--line)">
         ${platformCells}
       </div>
-      ${threshHtml ? `${div}${threshHtml}` : ''}
+      ${threshHtml ? `
+        ${divThresh}
+        <div class="max-[480px]:w-full">${threshHtml}</div>
+      ` : ''}
     </div>
     <span id="loadState" class="ml-auto text-xs" style="color:var(--muted)"></span>
   `;
