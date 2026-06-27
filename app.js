@@ -304,8 +304,6 @@ function renderGrid() {
   const grid  = document.getElementById('grid');
   const empty = document.getElementById('emptyNote');
 
-  document.getElementById('countLabel').textContent = movies.length;
-
   if (!movies.length) {
     grid.innerHTML    = '';
     empty.textContent = state.provider === 'populaires'
