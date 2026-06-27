@@ -116,13 +116,16 @@ function buildFilterBar() {
   const bar = document.getElementById('filterBar');
 
   /* "Popular" and "All" — standalone pill chips */
-  const simplePills = PROVIDERS
-    .filter(([k]) => k === 'populaires' || k === 'tous')
-    .map(([k, label]) => `
-      <button class="${chipClasses(state.provider === k)}"
-              style="${chipStyle(state.provider === k)}"
-              data-prov="${k}">${label}</button>
-    `).join('');
+  /* 6px gap between the two tabs, isolated from the outer gap-3 */
+  const simplePills = `<div class="flex items-center gap-1.5">${
+    PROVIDERS
+      .filter(([k]) => k === 'populaires' || k === 'tous')
+      .map(([k, label]) => `
+        <button class="${chipClasses()}"
+                style="${chipStyle(state.provider === k)}"
+                data-prov="${k}">${label}</button>
+      `).join('')
+  }</div>`;
 
   /* IMDB / RT / Metacritic — grouped in a segmented control */
   const platformCells = PROVIDERS
