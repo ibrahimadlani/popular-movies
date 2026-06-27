@@ -135,7 +135,7 @@ function buildFilterBar() {
               style="${cellStyle(state.provider === k)}"
               title="${label}" data-prov="${k}">
         ${PROV_ICON[k] || ''}
-        <span class="hidden sm:inline">${label}</span>
+        <span class="hidden md:inline">${label}</span>
       </button>
     `).join('');
 
