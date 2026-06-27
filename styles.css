@@ -35,7 +35,7 @@ html.dark {
 
 @media (max-width: 1024px) { :root { --cols: 4; } }
 @media (max-width:  768px) { :root { --cols: 3; } }
-@media (max-width:  480px) { :root { --cols: 2; } }
+@media (max-width:  480px) { :root { --cols: 2; } } /* xs breakpoint */
 
 
 /* ── Poster card hover ──────────────────────────────────

@@ -9,6 +9,13 @@
   <!-- Only external dependency: Tailwind CSS utility classes -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+  <!-- Custom breakpoints: xs = 480px (aligns with the 2-column grid breakpoint in styles.css) -->
+  <style type="text/tailwindcss">
+    @theme {
+      --breakpoint-xs: 480px;
+    }
+  </style>
+
   <!-- Custom properties, animations, and effects Tailwind can't express -->
   <link rel="stylesheet" href="styles.css">
 </head>
