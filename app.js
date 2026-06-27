@@ -88,18 +88,15 @@ themeBtn.addEventListener('click', () => {
    FILTER BAR
 ════════════════════════════════════════════════════════ */
 
-/* Tailwind classes for a chip based on its active state */
-function chipClasses(active) {
-  const base = 'h-8 px-3.5 text-xs inline-flex items-center gap-1.5 cursor-pointer transition-colors whitespace-nowrap';
-  return active
-    ? `${base} font-semibold rounded-full border border-transparent`
-    : `${base} rounded-full border`;
+/* "Popular" / "All" — text tabs with animated underline, no border/background */
+function chipClasses() {
+  return 'h-8 px-1 text-sm inline-flex items-center cursor-pointer whitespace-nowrap bg-transparent border-0 rounded-none';
 }
 
 function chipStyle(active) {
   return active
-    ? `background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)`
-    : `background:var(--card);color:var(--fg);border-color:var(--line)`;
+    ? `color:var(--fg);font-weight:700;box-shadow:inset 0 -2px 0 var(--accent);transition:color .25s ease,box-shadow .25s ease`
+    : `color:var(--muted);font-weight:400;box-shadow:inset 0 0 0 transparent;transition:color .25s ease,box-shadow .25s ease`;
 }
 
 /* Segmented group cell (no outer border-radius, shares a border) */
